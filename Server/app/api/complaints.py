@@ -19,7 +19,7 @@ def generate_complaint_number() -> str:
     return f"CMP-{random_digits}"
 
 # 1. Create a new Complaint
-@router.post("/", response_model=ComplaintResponse, status_code=status.HTTP_211_CREATED)
+@router.post("/", response_model=ComplaintResponse, status_code=status.HTTP_201_CREATED)
 def create_complaint(complaint_in: ComplaintCreate, db: Session = Depends(get_db)):
     db_complaint = Complaint(
         **complaint_in.model_dump(),
