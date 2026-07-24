@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 from app.db.database import Base, engine
 from app.api.complaints import router as complaints_router
 from app.api.documents import router as documents_router
+from app.api.ai import router as ai_router
 
 load_dotenv()
 
@@ -28,6 +29,7 @@ app.add_middleware(
 
 app.include_router(complaints_router)
 app.include_router(documents_router)
+app.include_router(ai_router)
 
 @app.get("/")
 def root():
