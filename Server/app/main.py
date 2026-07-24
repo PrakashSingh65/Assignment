@@ -2,8 +2,9 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import os
 from dotenv import load_dotenv
-from app.api.complaints import router as complaints_router
+
 from app.db.database import Base, engine
+from app.api.complaints import router as complaints_router
 
 load_dotenv()
 
@@ -24,7 +25,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.include_router(complaints_router)
+
 @app.get("/")
 def root():
     return {"message": "Welcome to Quality Assurance Complaint Management API", "status": "Active"}
-app.include_router(complaints_router)
