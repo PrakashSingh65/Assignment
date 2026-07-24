@@ -1,22 +1,11 @@
-// import React from 'react';
-// import ComlaintForm from './components/ComplaintForm';
 
-// function App() {
-//     return(
-//         <div className="bg-slate-100 min-h-screenp-6">
-//             <ComplaintForm />
-//         </div>
-//     );
-// }
-
-// export default APP;
 import React from 'react';
 import { Calendar, RotateCcw, Save } from 'lucide-react';
 
 export default function ComplaintForm() {
   return (
     <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-6">
-      {/* Header  */}
+      
       <div className="flex justify-between items-start pb-4 border-b border-slate-100">
         <div>
           <h1 className="text-xl font-bold text-slate-900">Log Customer Complaint</h1>
@@ -27,7 +16,7 @@ export default function ComplaintForm() {
         </span>
       </div>
 
-      {/* Section 1 */}
+      
       <div>
         <h2 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">
           1. Origin & Customer Details
@@ -44,7 +33,7 @@ export default function ComplaintForm() {
         </div>
       </div>
 
-      {/* Section 2 */}
+      
       <div>
         <h2 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">
           2. Product & Batch Identification
@@ -86,7 +75,7 @@ export default function ComplaintForm() {
         </div>
       </div>
 
-      {/* Section 3 */}
+      
       <div>
         <h2 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">
           3. Complaint Details
@@ -110,7 +99,7 @@ export default function ComplaintForm() {
         </div>
       </div>
 
-      {/* Section 4 */}
+      
       <div>
         <h2 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">
           4. Initial Assessment & Priority
@@ -129,7 +118,7 @@ export default function ComplaintForm() {
         </div>
       </div>
 
-      {/* Buttons */}
+      
       <div className="flex justify-between items-center pt-4 border-t border-slate-100">
         <button className="flex items-center gap-1.5 text-xs text-slate-600 font-medium border border-slate-300 px-3 py-2 rounded-lg hover:bg-slate-50 transition">
           <RotateCcw className="w-3.5 h-3.5" />
