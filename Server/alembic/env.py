@@ -8,7 +8,7 @@ import dotenv
 import os
 import sys
 
-sys.path.append(os.path.join(os.path.dirname(_file_), '..'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 dotenv.load_dotenv()
 
 from app.db.database import Base
