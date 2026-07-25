@@ -1,6 +1,6 @@
+from datetime import datetime, timezone
 from sqlalchemy import Column, String, Integer, DateTime, ForeignKey, Text
 from sqlalchemy.orm import relationship
-from datetime import datetime
 from app.db.database import Base
 
 class RootCause(Base):
@@ -10,7 +10,7 @@ class RootCause(Base):
     complaint_id = Column(Integer, ForeignKey("complaints.id", ondelete="CASCADE"), nullable=False)
     category = Column(String(100), nullable=False)  # e.g., Packaging, Raw Material, Human Error
     description = Column(Text, nullable=False)
-    created_at = Column(DateTime, default=datetime.utcnow)
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
 
     # Relationship
     complaint = relationship("Complaint", back_populates="root_causes")
