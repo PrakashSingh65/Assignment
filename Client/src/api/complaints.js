@@ -8,7 +8,7 @@ export const getComplaints = async () => {
 };
 
 
-export const createComplaint = async (data:any) => {
+export const createComplaint = async (data) => {
     const response = await api.post(
         "/complaints",
         data
