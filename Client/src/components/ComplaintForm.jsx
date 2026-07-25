@@ -1,8 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
 import { Calendar, RotateCcw, Save } from "lucide-react";
 import axios from "axios";
 
 export default function ComplaintForm() {
+  const [formData, setFormData] = useState({
+    title: "",
+    description: "",
+    severity: "Low",
+    status: "Open"
+  });
+
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setMessage("");
+
+    try {
+      // 1. Backend ko complaint data bhej rahe hain
+      const res = await axios.post("http://127.0.0.1:8000/complaints/", formData);
+      
+      // 2. AI analysis auto-run karne ke liye:
+      await axios.post('http://127.0.0.1:8000/ai/analyze/${res.data.id}');
+      
+      setMessage('Complaint #${res.data.id} registered & analyzed successfully!');
+      
+      // Reset Form fields
+      setFormData({
+        title: "",
+        description: "",
+        severity: "Low",
+        status: "Open"
+      });
+    } catch (err) {
+      console.error(err);
+      setMessage("Error submitting complaint. Check server connection.");
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-6">
       <div className="flex justify-between items-start pb-4 border-b border-slate-100">
