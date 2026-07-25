@@ -1,5 +1,6 @@
 from datetime import date, datetime
 from enum import Enum
+from typing import List, Optional
 
 from sqlalchemy import (
     String,
@@ -13,8 +14,6 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy.sql import func
 
 from app.db.database import Base
-
-
 
 
 class SeverityEnum(str, Enum):
@@ -39,7 +38,6 @@ class ComplaintStatusEnum(str, Enum):
     CAPA_PENDING = "CAPA_PENDING"
     RESOLVED = "RESOLVED"
     CLOSED = "CLOSED"
-
 
 
 class Complaint(Base):
@@ -73,7 +71,7 @@ class Complaint(Base):
         nullable=False,
     )
 
-    product_strength: Mapped[str] = mapped_column(
+    product_strength: Mapped[Optional[str]] = mapped_column(
         String(100),
         nullable=True,
     )
@@ -83,17 +81,17 @@ class Complaint(Base):
         nullable=False,
     )
 
-    manufacturing_date: Mapped[date] = mapped_column(
+    manufacturing_date: Mapped[Optional[date]] = mapped_column(
         Date,
         nullable=True,
     )
 
-    expiry_date: Mapped[date] = mapped_column(
+    expiry_date: Mapped[Optional[date]] = mapped_column(
         Date,
         nullable=True,
     )
 
-    quantity_affected: Mapped[int] = mapped_column(
+    quantity_affected: Mapped[Optional[int]] = mapped_column(
         Integer,
         nullable=True,
     )
@@ -131,8 +129,6 @@ class Complaint(Base):
         nullable=False,
     )
 
-    
-
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True),
         server_default=func.now(),
@@ -144,6 +140,6 @@ class Complaint(Base):
         onupdate=func.now(),
     )
 
-   
-
-    
+    # Relationships with other models
+    ai_analysis = relationship("AIAnalysis", back_populates="complaint", uselist=False, cascade="all, delete-orphan")
+    capas = relationship("CAPA", back_populates="complaint", cascade="all, delete-orphan")

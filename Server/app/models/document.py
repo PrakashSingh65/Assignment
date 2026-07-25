@@ -1,6 +1,6 @@
+from datetime import datetime, timezone
 from sqlalchemy import Column, String, Integer, DateTime, ForeignKey, Text
 from sqlalchemy.orm import relationship
-from datetime import datetime
 from app.db.database import Base
 
 class Document(Base):
@@ -13,7 +13,7 @@ class Document(Base):
     file_type = Column(String(50), nullable=False)  # pdf, docx, txt
     file_size = Column(Integer, nullable=False)     # Bytes
     raw_text = Column(Text, nullable=True)          # Extracted text for AI
-    uploaded_at = Column(DateTime, default=datetime.utcnow)
+    uploaded_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
 
     # Relationship
     complaint = relationship("Complaint", back_populates="documents")

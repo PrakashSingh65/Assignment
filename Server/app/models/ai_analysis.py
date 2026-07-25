@@ -1,6 +1,6 @@
+from datetime import datetime, timezone
 from sqlalchemy import Column, String, Integer, DateTime, ForeignKey, Text, JSON
 from sqlalchemy.orm import relationship
-from datetime import datetime
 from app.db.database import Base
 
 class AIAnalysis(Base):
@@ -11,7 +11,7 @@ class AIAnalysis(Base):
     summary = Column(Text, nullable=True)
     extracted_entities = Column(JSON, nullable=True)  # JSON data (key-values)
     confidence_score = Column(String(50), nullable=True)
-    analyzed_at = Column(DateTime, default=datetime.utcnow)
+    analyzed_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
 
     # Relationship
     complaint = relationship("Complaint", back_populates="ai_analysis")
