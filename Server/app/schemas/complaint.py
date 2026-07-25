@@ -1,20 +1,20 @@
 from pydantic import BaseModel, ConfigDict
 from typing import Optional, List
-from datetime import datetime
+from datetime import date, datetime
 
 # Common Base Schema
 class ComplaintBase(BaseModel):
-    source: Optional[str] = None
-    customer_name: Optional[str] = None
-    product_name: Optional[str] = None
-    strength: Optional[str] = None
-    batch_no: Optional[str] = None
-    mfg_date: Optional[str] = None
-    exp_date: Optional[str] = None
-    quantity: Optional[str] = None
-    complaint_type: Optional[str] = None
-    complaint_date: Optional[str] = None
-    description: Optional[str] = None
+    complaint_source: str
+    customer_name: str
+    product_name: str
+    product_strength: Optional[str] = None
+    batch_number: str
+    manufacturing_date: Optional[date] = None
+    expiry_date: Optional[date] = None
+    quantity_affected: Optional[int] = None
+    complaint_type: str
+    complaint_description: str
+    complaint_date: date
     severity: Optional[str] = None
     priority: Optional[str] = None
 
@@ -34,4 +34,4 @@ class ComplaintResponse(ComplaintBase):
     created_at: datetime
     updated_at: datetime
 
-    model_config = ConfigDict(from_attributes=True)
+    model_config = ConfigDict(from_attributes=True)

@@ -12,8 +12,10 @@ router = APIRouter(
     tags=["Documents"]
 )
 
+from app.services.ai_service import extract_complaint_from_document
+
 # 1. Upload & Parse Document
-@router.post("/upload", response_model=DocumentResponse, status_code=status.HTTP_201_CREATED)
+@router.post("/upload", status_code=status.HTTP_201_CREATED)
 async def upload_document(
     file: UploadFile = File(...),
     complaint_id: Optional[int] = Form(None),
@@ -33,7 +35,13 @@ async def upload_document(
     db.add(db_doc)
     db.commit()
     db.refresh(db_doc)
-    return db_doc
+    
+    extracted = extract_complaint_from_document(raw_text)
+    
+    return {
+        "document": db_doc,
+        "extracted_data": extracted
+    }
 
 # 2. Get All Documents
 @router.get("/", response_model=List[DocumentResponse])

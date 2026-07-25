@@ -143,3 +143,6 @@ class Complaint(Base):
     # Relationships with other models
     ai_analysis = relationship("AIAnalysis", back_populates="complaint", uselist=False, cascade="all, delete-orphan")
     capas = relationship("CAPA", back_populates="complaint", cascade="all, delete-orphan")
+    documents = relationship("Document", back_populates="complaint", cascade="all, delete-orphan")
+    root_causes = relationship("RootCause", back_populates="complaint", cascade="all, delete-orphan")
+    history_logs = relationship("HistoryLog", back_populates="complaint", cascade="all, delete-orphan")
