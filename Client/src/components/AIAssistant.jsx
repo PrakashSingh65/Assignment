@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { Upload, Sparkles, Send, Bot, User, FileText, MessageSquare } from "lucide-react";
 import axios from "axios";
 
-// Safely convert any value to a renderable string
+
 const safeText = (val) => {
   if (typeof val === "string") return val;
   if (Array.isArray(val)) return val.map(safeText).filter(Boolean).join("\n");
