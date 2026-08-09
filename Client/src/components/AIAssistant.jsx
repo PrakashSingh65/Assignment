@@ -18,7 +18,7 @@ const safeText = (val) => {
 export default function AIAssistant({ onExtractedData }) {
   const [textInput, setTextInput] = useState("");
   const [loading, setLoading] = useState(false);
-  const [mode, setMode] = useState("chat"); // "chat" or "extract"
+  const [mode, setMode] = useState("chat"); 
   const [chatHistory, setChatHistory] = useState([
     { role: "ai", content: "Hi! I'm your QMS AI Assistant. You can:\n• **Chat** – Ask me questions about complaints in the database.\n• **Extract** – Paste complaint text or upload a document to auto-fill the form.\n\nSwitch modes using the buttons above." }
   ]);
