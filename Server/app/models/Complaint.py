@@ -102,7 +102,7 @@ class Complaint(Base):
     )
 
     complaint_description: Mapped[str] = mapped_column(
-        pages,
+        Text,
         nullable=False,
     )
 
