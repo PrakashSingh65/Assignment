@@ -29,7 +29,7 @@ export default function AIAssistant({ onExtractedData }) {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [chatHistory, loading]);
 
-  // File Upload Handler (always extracts)
+  
   const handleFileUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -53,7 +53,7 @@ export default function AIAssistant({ onExtractedData }) {
     }
   };
 
-  // Text Handler – routes to either /ai/chat or /ai/extract_text
+  
   const handleSendText = async () => {
     if (!textInput.trim()) return;
 
