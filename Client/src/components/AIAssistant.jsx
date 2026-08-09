@@ -24,7 +24,7 @@ export default function AIAssistant({ onExtractedData }) {
   ]);
   const chatEndRef = useRef(null);
 
-  // Auto-scroll to bottom on new messages
+  
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [chatHistory, loading]);
